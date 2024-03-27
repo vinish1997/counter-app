@@ -4,10 +4,10 @@ import { FaRegCopyright } from "react-icons/fa";
 import { BsFacebook, BsGithub, BsInstagram, BsLinkedin } from "react-icons/bs";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(parseInt(localStorage.getItem("count")) || 0);
 
   return (
-    <>
+    <div className="page">
       <div className="container">
         <center>
           <h1 className="head">Count Your Moments</h1>
@@ -17,6 +17,7 @@ function App() {
               className="button"
               onClick={() => {
                 setCount(count + 1);
+                localStorage.setItem("count", count+1);
               }}
             >
               +
@@ -25,6 +26,7 @@ function App() {
               className="button"
               onClick={() => {
                 setCount(0);
+                localStorage.clear();
               }}
             >
               RESET
@@ -34,6 +36,7 @@ function App() {
               onClick={() => {
                 if (count > 0) {
                   setCount(count - 1);
+                  localStorage.setItem("count", count-1);
                 }
               }}
             >
@@ -55,7 +58,7 @@ function App() {
             <a href="#" ><BsGithub className="icon"/></a>
           </div>
       </footer>
-    </>
+    </div>
   );
 }
 
